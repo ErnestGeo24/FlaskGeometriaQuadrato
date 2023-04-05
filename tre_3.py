@@ -1,10 +1,11 @@
 from flask import Flask, render_template,request
 import re
+import math
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("due_20.html")
+    return render_template("tre_30.html")
 
 @app.route('/Geometria', methods = ['GET'])
 def geo():
@@ -12,10 +13,10 @@ def geo():
     lato = float(request.args.get('lato'))
     if geometria == "Area":
         area = lato **2
-        return render_template('result_2.html',Base = base,Altezza=altezza, Area = area)
+        return render_template('tre_31.html',Lato = lato, Area = area)
     else:
-        diagonale = math.sqrt(base ** 2 + altezza ** 2)
-        return render_template('result_3.html',Base = base,Altezza=altezza, Diagonale = diagonale)
+        diagonale = lato * math.sqrt(2)
+        return render_template('tre_32.html',Lato = lato, Diagonale = diagonale)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
